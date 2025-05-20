@@ -29,6 +29,7 @@ class Linked_List():
         while current.next is not None:
             print(f"{current.value} -> ", end = "")
             current = current.next
+        print(f"{current.value} -> ", end = "")
         print("None")
     
     def insert_new_head(self, value):

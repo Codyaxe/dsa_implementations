@@ -1,4 +1,4 @@
-#Dummy Node Approach
+#No Dummy Node Approach
 
 class Node():
     def __init__(self, value = None, next = None, prev = None):
@@ -9,24 +9,21 @@ class Node():
 class Linked_List():
 
     def __init__(self):
-        self.head = Node()
+        self.head = None
         self.tail = None
         self.size = 0
 
     def append(self, value):
         current = self.head
         if self.size == 0:
-            new_node = Node(value, current)
-            current.prev = new_node
+            new_node = Node(value)
             self.tail = new_node
             self.head = new_node
             self.size += 1
         else:
             current = self.tail
-            temp = current.next
-            new_node = Node(value, temp, current)
+            new_node = Node(value, None, current)
             current.next = new_node
-            temp.prev = new_node
             self.tail = new_node
             self.size += 1
 
@@ -35,23 +32,34 @@ class Linked_List():
         while current.next is not None:
             print(f"{current.value} <-> ", end = "")
             current = current.next
+        print(f"{current.value} <-> ", end = "")
         print("None")
     
     def insert_new_head(self, value):
         self.insert(value, 0)
 
     def insert(self, value, index):
+        current = self.head
         if index > self.size:
             print("Index out of range!")
             return
-        if index <= self.size // 2:
-            current = self.head
-            if index == 0:
-                new_node = Node(value, current)
+        if index == 0:
+            new_node = Node(value, current)
+            if current is not None:
                 current.prev = new_node
-                self.head = new_node
-                self.size += 1
-                return
+            else:
+                self.tail = new_node
+            self.head = new_node
+            self.size += 1
+            return
+        if index == self.size - 1:
+            current = self.tail
+            new_node = Node(value, None, current)
+            current.next = new_node
+            self.tail = new_node
+            self.size += 1
+            return
+        if index <= self.size // 2:
             for i in range(index - 1):
                 current = current.next
             temp = current.next
@@ -64,7 +72,6 @@ class Linked_List():
             self.size += 1
         else:
             current = self.tail
-            print(current.value)
             size = self.size - index
             for i in range(size):
                 current = current.prev
@@ -77,7 +84,6 @@ class Linked_List():
                 self.tail = new_node 
             self.size += 1
 
-
     def delete(self, index):
         current = self.head
         if index > self.size:
@@ -88,15 +94,29 @@ class Linked_List():
             self.head.prev = None
             self.size -= 1
             return
-        for i in range(index - 1):
-            current = current.next
-        current.next = current.next.next
-        current.next.prev = current
-        self.size -= 1
+        if index == self.size - 1:
+            current = self.tail.prev
+            current.next = None
+            self.tail = current
+            self.size -= 1
+            return
+        if index <= self.size // 2:
+            for i in range(index - 1):
+                current = current.next
+            current.next = current.next.next
+            current.next.prev = current
+            self.size -= 1
+        else:
+            current = self.tail
+            size = self.size - index
+            for i in range(size):
+                current = current.prev
+            current.next = current.next.next
+            current.next.prev = current
+            self.size -= 1
     
     def pop(self):
-        current = self.tail
-        current = current.prev
+        current = self.tail.prev
         current.next = None
         self.tail = current
         self.size -= 1
@@ -122,13 +142,16 @@ linked_list.append(1)
 linked_list.print_node()
 linked_list.append(4)
 linked_list.print_node()
-print(linked_list.size)
+linked_list.print_node()
+print("Size", linked_list.size)
 linked_list.append(10)
 linked_list.append(12)
-print(linked_list.size)
+print("Size", linked_list.size)
 linked_list.print_node()
 linked_list.insert(11, 3)
 linked_list.print_node()
 linked_list.append(5)
+linked_list.print_node()
+linked_list.delete(2)
 linked_list.find(5)
 linked_list.print_node()
