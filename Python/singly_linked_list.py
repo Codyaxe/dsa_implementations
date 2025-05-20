@@ -46,8 +46,8 @@ class Linked_List():
             return
         for i in range(index - 1):
             current = current.next
-        self.temp = current.next
-        current.next = Node(value, self.temp)
+        temp = current.next
+        current.next = Node(value, temp)
         self.size += 1
 
 
