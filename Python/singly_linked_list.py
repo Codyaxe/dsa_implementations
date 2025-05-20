@@ -52,6 +52,9 @@ class Linked_List():
 
 
     def delete(self, index):
+        if self.size == 0:
+            print("The Linked List is Empty")
+            return
         current = self.head
         if index > self.size:
             print("Index out of range!")
@@ -67,6 +70,9 @@ class Linked_List():
     
     #Via Two Pointer Approach
     def pop(self):
+        if self.size == 0:
+            print("The Linked List is Empty")
+            return
         trav_one = self.head
         trav_two = trav_one.next
         while trav_two.next is not None:
@@ -76,6 +82,9 @@ class Linked_List():
         self.size -= 1
 
     def find(self, value):
+        if self.size == 0:
+            print("The Linked List is Empty")
+            return
         current = self.head
         index = 0
         while current.value != value:

@@ -78,6 +78,9 @@ class Linked_List():
             self.size += 1
 
     def delete(self, index):
+        if self.size == 0:
+            print("The Linked List is Empty")
+            return
         current = self.head
         if index > self.size:
             print("Index out of range!")
@@ -109,12 +112,18 @@ class Linked_List():
             self.size -= 1
     
     def pop(self):
+        if self.size == 0:
+            print("The Linked List is Empty")
+            return
         current = self.tail.prev
         current.next = None
         self.tail = current
         self.size -= 1
 
     def find(self, value):
+        if self.size == 0:
+            print("The Linked List is Empty")
+            return
         current = self.head
         index = 0
         while current.value != value:
