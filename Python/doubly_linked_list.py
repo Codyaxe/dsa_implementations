@@ -1,4 +1,4 @@
-#Dummy Node Approach Approach
+#Dummy Node Approach
 
 class Node():
     def __init__(self, value = None, next = None, prev = None):
@@ -22,8 +22,7 @@ class Linked_List():
             self.head = new_node
             self.size += 1
         else:
-            while current.next.value is not None:
-                current = current.next
+            current = self.tail
             temp = current.next
             new_node = Node(value, temp, current)
             current.next = new_node
