@@ -52,13 +52,6 @@ class Linked_List():
             self.head = new_node
             self.size += 1
             return
-        if index == self.size - 1:
-            current = self.tail
-            new_node = Node(value, None, current)
-            current.next = new_node
-            self.tail = new_node
-            self.size += 1
-            return
         if index <= self.size // 2:
             for i in range(index - 1):
                 current = current.next
@@ -143,10 +136,10 @@ linked_list.print_node()
 linked_list.append(4)
 linked_list.print_node()
 linked_list.print_node()
-print("Size", linked_list.size)
+# print("Size", linked_list.size)
 linked_list.append(10)
 linked_list.append(12)
-print("Size", linked_list.size)
+# print("Size", linked_list.size)
 linked_list.print_node()
 linked_list.insert(11, 3)
 linked_list.print_node()
