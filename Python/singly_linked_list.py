@@ -1,4 +1,4 @@
-#No Tail Pointer Approach
+#Dummy Node Approach
 
 class Node():
     def __init__(self, value = None, next = None):
