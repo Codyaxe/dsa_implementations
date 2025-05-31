@@ -9,16 +9,17 @@ class MinHeap():
         else:
             print("Min-Heap is empty!")
 
-    def heapinsert(self, value):
+    def heapappendkey(self, value):
         self.heap.append(value)
         self.size += 1
         index = self.size - 1
+        #Swims up
         while index != 0 and self.heap[self.parent(index)] > self.heap[index]:
             parent = self.parent(index)
             self.swap(index, parent)
             index = parent
 
-    def heapdelete(self, index):
+    def heapdeletekey(self, index):
         if self.size == 0:
             print("Min-Heap is empty!")
             return
@@ -28,6 +29,7 @@ class MinHeap():
             return
         self.swap(index, last_index)
         self.heap.pop()
+        #Swims down
         while self.heap[index] > self.heap[self.left(index)] or self.heap[index] > self.heap[self.right(index)]:
             left = self.left(index)
             right = self.left(index)
@@ -37,6 +39,7 @@ class MinHeap():
             else:
                 self.swap(index, right)
                 index = right
+        #Swims up
         while index != 0 and self.heap[self.parent(index)] > self.heap[index]:
             parent = self.parent(index)
             self.swap(index, parent)
