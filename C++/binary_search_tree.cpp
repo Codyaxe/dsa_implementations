@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <deque>
+#include <stack>
 using namespace std;
 
 //Implementation using raw pointers
@@ -129,7 +130,7 @@ public:
 
         while(!queue.empty()){
             Node* current = queue.front();
-            cout << current->value << '\n';
+            cout << current->value << " ";
 
             if (current->left){
                 queue.push_back(current->left);
@@ -139,6 +140,82 @@ public:
             }
             queue.pop_front();
         }       
+        cout << '\n';
+    }
+
+    //Preorder DFS No Recursion
+    void preordertraversal(){
+        if (!root){
+            cout << "Empty BST!" << '\n';
+            return;
+        }
+        stack<Node*> s {};
+        Node* current = root;
+        s.push(current);
+        
+        while (!s.empty()){
+            current = s.top();
+
+            cout << current->value << " ";
+            s.pop();
+            if (current->right) {
+                s.push(current->right);
+            }
+            if (current->left){
+                s.push(current->left);
+            }
+        }
+        cout << '\n';
+    }
+
+    //Inorder DFS No Recursion
+    void inordertraversal(){
+        if (!root){
+            cout << "Empty BST!" << '\n';
+            return;
+        }
+        stack<Node*> s {};
+        Node* current = root;
+
+        while(!s.empty() || current){
+            while(current){
+                s.push(current);
+                current = current->left;
+            }
+            current = s.top();
+            s.pop();
+            cout << current->value << " ";
+            
+            current = current->right;
+        }
+        cout << '\n';
+    }
+
+    //Postorder DFS No Recursion One Stack Technique
+    void postordertraversal(){
+        if (!root){
+            cout << "Empty BST!" << '\n';
+            return;
+        }
+        stack<Node*> s {};
+        Node* current = root;
+        Node* lastVisited = nullptr;
+        
+        while (!s.empty() || current) {
+            if (current) {
+                s.push(current);
+                current = current->left;
+            } else {
+                Node* peekNode = s.top();
+                if (peekNode->right && lastVisited != peekNode->right) {
+                    current = peekNode->right;
+                } else {
+                    cout << peekNode->value << " ";
+                    lastVisited = peekNode;
+                    s.pop();
+                }
+            }
+        }
     }
 
 };
@@ -147,16 +224,19 @@ int main(){
 
     BST test;
 
+    test.insertNode(4);
     test.insertNode(2);
     test.insertNode(6);
     test.insertNode(1);
-    test.insertNode(8);
-    test.insertNode(12);
-    test.insertNode(1);
+    test.insertNode(3);
+    test.insertNode(5);
+    test.insertNode(7);
     test.traverse();
     cout << '\n';
-    test.deleteNode(12);
     test.traverse();
+    test.preordertraversal();
+    test.inordertraversal();
+    test.postordertraversal();
 
 
 
