@@ -50,10 +50,16 @@ class MinHeap():
         self.heap[index_two] = self.heap[index]
         self.heap[index] = temp
     
-    def decreasekey(self):
-        pass
-
-    @staticmethod
+    def decreasekey(self, index):
+        if self.size == 0:
+            print("Min-Heap is empty!")
+            return
+        self.heap[index] = self.heap[index] - 1
+        while index != 0 and self.heap[self.parent(index)] > self.heap[index]:
+            parent = self.parent(index)
+            self.swap(index, parent)
+            index = parent
+            
     def parent(index):
         return (index-2)//2
 
