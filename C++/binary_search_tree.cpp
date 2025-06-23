@@ -52,7 +52,7 @@ public:
             cout << "Your Tree is Empty";
             return;
         }
-        deleteRec(value, root);
+        root = deleteRec(value, root);
     }
 
     Node* deleteRec(int value, Node* currentRoot){
