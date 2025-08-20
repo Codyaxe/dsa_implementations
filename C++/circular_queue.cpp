@@ -1,5 +1,6 @@
 #include <iostream>
 <<<<<<< HEAD
+<<<<<<< HEAD
 using namespace std;
 
 
@@ -66,6 +67,8 @@ int main(){
 
 }
 =======
+=======
+>>>>>>> 71931ac6dfb76f9b833692e35eff62705f6f38e1
 #include <limits>
 using namespace std;
 
@@ -187,5 +190,9 @@ int main(){
 
 
     return 0;
+<<<<<<< HEAD
+}
+>>>>>>> 71931ac6dfb76f9b833692e35eff62705f6f38e1
+=======
 }
 >>>>>>> 71931ac6dfb76f9b833692e35eff62705f6f38e1
