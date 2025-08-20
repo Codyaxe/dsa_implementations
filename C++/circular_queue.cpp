@@ -1,97 +1,22 @@
 #include <iostream>
-<<<<<<< HEAD
-<<<<<<< HEAD
-using namespace std;
-
-
-
-class Queue{
-
-    private:
-
-    int* arr;
-    int front;
-    int rear;
-    int size;
-
-    public:
-
-    Queue() : front(-1), rear(-1), size(10)
-    { arr = new int[size]; }
-    Queue(int s) : front(-1), rear(-1), size(s)
-    { arr = new int[size]; }
-
-    void enqueue(int val){
-        if (rear == -1){
-            arr[++rear] = val;
-            ++front;
-        } else {
-            rear = (rear + 1) % size;
-            if (front == rear){
-                cout << "The Queue is full!";
-                return;
-            } else {
-                arr[rear] = val;
-            }
-        }
-    }
-    int dequeue(){
-        if (rear == -1){
-            cout << "The Queue is empty";
-            return -1;
-        } else {
-            int temp {arr[front]};
-            arr[front] = -1;
-            front = (front + 1) % size;
-            return temp;
-        }
-    }
-
-    ~Queue(){
-        delete[] arr;
-    }
-};
-
-int main(){
-    Queue q(10);
-
-    q.enqueue(1);
-    q.enqueue(2);
-    q.enqueue(3);
-    q.enqueue(4);
-    q.enqueue(5);
-    // cout << q.dequeue() << '\n';
-    q.enqueue(6);
-    // cout << q.dequeue() << '\n';
-
-
-}
-=======
-=======
->>>>>>> 71931ac6dfb76f9b833692e35eff62705f6f38e1
 #include <limits>
 using namespace std;
-
 
 const int MAX_SIZE = 5;
 
 class Queue{
-
 private: 
-
     int arr[MAX_SIZE];
     int front;
     int rear;
     int capacity;
 
 public:
-
-    Queue() : 
-    front(-1), rear(-1), capacity(0)
-    {for(int i = 0; i < MAX_SIZE; i++){
-        arr[i] = numeric_limits<int>::min();
+    Queue() : front(-1), rear(-1), capacity(0) {
+        for(int i = 0; i < MAX_SIZE; i++){
+            arr[i] = numeric_limits<int>::min();
+        }
     }
-    };
 
     void enqueue(int x){
         if (front == -1 ){
@@ -136,14 +61,9 @@ public:
         }
         return arr[rear];
     }
-
-
 };
 
-
-
 int main(){
-
     Queue q;
 
     q.enqueue(12);
@@ -188,11 +108,5 @@ int main(){
     cout << q.first() << '\n';
     q.dequeue();
 
-
     return 0;
-<<<<<<< HEAD
 }
->>>>>>> 71931ac6dfb76f9b833692e35eff62705f6f38e1
-=======
-}
->>>>>>> 71931ac6dfb76f9b833692e35eff62705f6f38e1
